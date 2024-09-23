@@ -1,5 +1,3 @@
-package vulnerableApp;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,6 +10,8 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 public class App2 implements HttpHandler {
+    private App2() {}
+
     private static final Logger logger = LogManager.getLogger(App2.class);
 
     public static void main(String[] args) throws IOException {
