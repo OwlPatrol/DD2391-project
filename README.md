@@ -4,7 +4,7 @@
 
 Located in `vulnerable-app/`. Install Apache maven (tested on version 3.9.6),
 navigate to the app's directory and run the command `mvn compile exec:java -q
--Dexec.mainClass="vulnerableApp.App"`.
+-Dexec.mainClass="App"`.
 
 It is a web server that listen on port 8080 and logs the current time, the
 connecting clients' IP address and user agent and the requests method and path,
