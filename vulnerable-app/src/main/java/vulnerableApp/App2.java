@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
-public class App implements HttpHandler {
-    private static final Logger logger = LogManager.getLogger(App.class);
+public class App2 implements HttpHandler {
+    private static final Logger logger = LogManager.getLogger(App2.class);
 
     public static void main(String[] args) throws IOException {
         var listenAny = args.length > 0 && args[0].equals("listen-any");
@@ -24,12 +24,12 @@ public class App implements HttpHandler {
             0
         );
 
-        server.createContext("/", new App());
+        server.createContext("/", new App2());
 
         server.setExecutor(null);
         server.start();
 
-        logger.info("Started server on http://" + (listenAny ? "0.0.0.0" : "127.0.0.1") + ":8080");
+        logger.info("Started server 2 on http://" + (listenAny ? "0.0.0.0" : "127.0.0.1") + ":8080");
     }
 
     @Override
