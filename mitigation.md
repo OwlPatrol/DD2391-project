@@ -79,7 +79,7 @@ For example, you could write a simple function to replace `${` with a harmless s
 
 ```java
 public String sanitizeInput(String input) {
-    return input.replace("${", "\\${");
+    return input.replaceAll("\\$\\{.*?\\}", "");
 }
 ```
 
