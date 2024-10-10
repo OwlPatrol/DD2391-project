@@ -6,7 +6,6 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 public class App implements HttpHandler {
@@ -15,6 +14,7 @@ public class App implements HttpHandler {
     private static final Logger logger = LogManager.getLogger(App.class);
 
     public static void main(String[] args) throws IOException {
+
         var listenAny = args.length > 0 && args[0].equals("listen-any");
 
         HttpServer server = HttpServer.create(
@@ -39,6 +39,9 @@ public class App implements HttpHandler {
         var clientIp = exchange.getRemoteAddress().getAddress().getHostAddress();
         var userAgent = exchange.getRequestHeaders().getFirst("User-Agent");
         var accept = exchange.getRequestHeaders().getFirst("Accept");
+
+        String sanitizedUserAgent = sanitizeInput(userAgent);
+
         logger.info("{} {} {} {} {}", method, path, clientIp, userAgent, accept);
 
         var response = "Hello, this a the HTTP server!";
@@ -47,4 +50,16 @@ public class App implements HttpHandler {
         os.write(response.getBytes());
         os.close();
     }
+
+
+        // Static method to sanitize input
+        public static String sanitizeInput(String input) {
+            if (input == null) {
+                return null;
+            }
+            // Remove all occurrences of '${...}'
+            return input.replaceAll("\\$\\{.*?\\}", "");
+        }
+
+
 }

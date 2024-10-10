@@ -3,6 +3,7 @@
     <Appenders>
         <!-- Console appender logs to stdout -->
         <Console name="Console" target="SYSTEM_OUT">
+            <!-- <PatternLayoutpattern="%d{HH:mm:ss.SSS}[%t]%-5level%logger{36}-%msg{nolookups}%n"/> -->
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
     </Appenders>
