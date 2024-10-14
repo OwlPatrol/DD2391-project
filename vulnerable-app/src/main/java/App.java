@@ -6,6 +6,7 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 public class App implements HttpHandler {
@@ -14,8 +15,7 @@ public class App implements HttpHandler {
     private static final Logger logger = LogManager.getLogger(App.class);
 
     public static void main(String[] args) throws IOException {
-
-        var listenAny = args.length > 0 && args[0].equals("listen-any");
+        boolean listenAny = args.length > 0 && args[0].equals("listen-any");
 
         HttpServer server = HttpServer.create(
             listenAny ?
@@ -34,19 +34,19 @@ public class App implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        var method = exchange.getRequestMethod();
-        var path = exchange.getRequestURI().getPath();
-        var clientIp = exchange.getRemoteAddress().getAddress().getHostAddress();
-        var userAgent = exchange.getRequestHeaders().getFirst("User-Agent");
-        var accept = exchange.getRequestHeaders().getFirst("Accept");
+        String method = exchange.getRequestMethod();
+        String path = exchange.getRequestURI().getPath();
+        String clientIp = exchange.getRemoteAddress().getAddress().getHostAddress();
+        String userAgent = exchange.getRequestHeaders().getFirst("User-Agent");
+        String accept = exchange.getRequestHeaders().getFirst("Accept");
 
         String sanitizedUserAgent = sanitizeInput(userAgent);
 
         logger.info("{} {} {} {} {}", method, path, clientIp, userAgent, accept);
 
-        var response = "Hello, this a the HTTP server!";
+        String response = "Hello, this a the HTTP server!";
         exchange.sendResponseHeaders(200, response.getBytes().length);
-        var os = exchange.getResponseBody();
+        OutputStream os = exchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
     }
