@@ -4,7 +4,7 @@
 Log4Shell, discovered in December 2021, is a critical vulnerability in the Apache Log4j library, a widely-used Java-based logging framework. The vulnerability is officially tracked as CVE-2021-44228 and allows for remote code execution (RCE) by exploiting how Log4j handles user-controlled input in log messages. This issue stems from Log4j’s support for Java Naming and Directory Interface (JNDI) lookups in log entries, which could be abused by an attacker to trick Log4j into fetching and executing arbitrary code from remote servers. Given the ubiquity of Log4j in enterprise software, cloud services, and widely-used platforms, the scope of this vulnerability’s impact is immense.
 
 **History and Emergence:**
-Log4Shell was first disclosed publicly in December 2021, but the issue had likely existed unnoticed for years in Log4j version 2.x, which was introduced in 2013. The vulnerability was uncovered during the usage of Minecraft servers, where attackers quickly demonstrated how easily they could exploit it to gain control over a system by sending a simple chat message containing a malicious string. The fact that such a trivial input could lead to remote code execution across a wide variety of platforms triggered immediate concern, leading to widespread panic among system administrators, cybersecurity experts, and software vendors.
+Log4Shell was first disclosed publicly in December 2021, but the issue had likely existed unnoticed for years in Log4j version 2.x, which was introduced in 2013. The vulnerability got a lot of attention from usage on Minecraft servers, where attackers quickly demonstrated how easily they could exploit it to gain control over other players' systems by sending a simple chat message containing a malicious string. The fact that such a trivial input could lead to remote code execution across a wide variety of platforms triggered immediate concern, leading to widespread panic among system administrators, cybersecurity experts, and software vendors.
 
 Many high-profile companies and critical infrastructures that rely on Log4j were affected, including Amazon Web Services, Cloudflare, Twitter, and many others, highlighting the pervasive nature of the vulnerability. The vulnerability was particularly dangerous due to how easily attackers could exploit it: simply by sending a crafted string in various inputs such as HTTP requests, chat messages, or any other logged data, they could compromise servers without the need for authentication.
 
@@ -15,7 +15,7 @@ Log4Shell is considered one of the most severe vulnerabilities in recent history
 2. **Widespread Usage of Log4j**: Log4j is embedded in countless applications and services across the globe. It is used by enterprises, cloud platforms, and third-party services, making the vulnerability’s reach vast and affecting millions of systems. Many organizations were unaware that they even had Log4j integrated, leading to challenges in identifying and patching affected systems.
 3. **Potential for Remote Code Execution**: Once exploited, attackers can achieve RCE, allowing them to execute arbitrary code on the target machine. This means attackers can take full control of a vulnerable system, steal data, deploy ransomware, or even create backdoors for persistent access.
 4. **Global Impact**: Log4Shell created a global race among security professionals to patch systems, while malicious actors hurried to exploit the vulnerability. Major government agencies, cybersecurity firms, and enterprises worldwide raised alarms, leading to an unprecedented effort to protect vulnerable systems.
-Given these factors, Log4Shell was assigned the highest severity score—10 out of 10—on the CVSS (Common Vulnerability Scoring System) scale.
+Given these factors, Log4Shell was assigned the highest severity score — 10 out of 10 — on the CVSS (Common Vulnerability Scoring System) scale.
 
 **Problem Statement**
 Our project focuses on understanding, detecting, and mitigating the Log4Shell vulnerability. By reimplementing the weakness, we gain a deep understanding of the exploit's mechanics and evaluate real-world scenarios where this vulnerability could be leveraged. The project aims to:
@@ -77,6 +77,7 @@ It by default listens on port 1389 and 3000, but can be changed with
 `$LDAP_PORT` and `$HTTP_PORT` respectively. If the client cannot reach the
 exploit host through `localhost`, `$HOST` must also be set to the ip or
 hostname on which it can.
+
 ## Contributions
 ### Max Andersson
 As a key component of my contribution to the Log4Shell vulnerability lab, I conducted extensive background research on the exploit. This in-depth investigation encompassed:
