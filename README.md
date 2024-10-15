@@ -26,7 +26,7 @@ Our project focuses on understanding, detecting, and mitigating the Log4Shell vu
 
 This project aims to contribute both practical and theoretical insights into how systems can remain protected from such critical weaknesses, ensuring resilience against future exploits of similar nature.
 
-## Referneces
+## References
 ### General Set Up
 1. **mbechler/marshalsec**
    GitHub Repository: [https://github.com/mbechler/marshalsec](https://github.com/mbechler/marshalsec)
