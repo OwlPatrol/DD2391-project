@@ -71,9 +71,10 @@ append `-Dexec.args="listen-any"` to the command mentioned above.
 
 ### Exploit Host
 
-Located in `exploit-host/`. Install Apache maven (tested on version 3.9.6),
-navigate to the app's directory and run the command
-`mvn package -q && java -cp target/exploit-host-1.0-SNAPSHOT.jar App`.
+Located in `exploit-host/`. Either install docker & docker compose and run
+`docker compose up`, or install Apache maven (tested on version 3.9.6), navigate to
+the app's directory and run the command `mvn package -q && java -cp
+target/exploit-host-1.0-SNAPSHOT.jar App`.
 
 It by default listens on port 1389 and 3000, but can be changed with
 `$LDAP_PORT` and `$HTTP_PORT` respectively. If the client cannot reach the
