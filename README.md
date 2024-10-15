@@ -27,7 +27,23 @@ Our project focuses on understanding, detecting, and mitigating the Log4Shell vu
 This project aims to contribute both practical and theoretical insights into how systems can remain protected from such critical weaknesses, ensuring resilience against future exploits of similar nature.
 
 ## Referneces
+### General Set Up
+1. **mbechler/marshalsec**  
+   GitHub Repository: [https://github.com/mbechler/marshalsec](https://github.com/mbechler/marshalsec)  
+   **Explanation:**  
+   This repository provides a proof-of-concept tool for various Java deserialization vulnerabilities, including JNDI exploitation, which is a core component of the **Log4Shell** vulnerability. We included this resource because it offers a clear demonstration of how JNDI lookups can be leveraged in attacks, which allowed us to better understand the exploitation process. Furthermore, **marshalsec** was pivotal in setting up our own LDAP server for hosting malicious payloads, an essential step in reproducing the **Log4Shell** attack scenario. By using **marshalsec**, we were able to simulate how attackers exploit the vulnerability in real-world environments, which significantly enhanced our ability to demonstrate the vulnerability's impact during our seminar presentation.
+2. **christophetd/log4shell-vulnerable-app**  
+   GitHub Repository: [https://github.com/christophetd/log4shell-vulnerable-app](https://github.com/christophetd/log4shell-vulnerable-app)  
+   **Explanation:**  
+   This repository contains a deliberately vulnerable application designed to be exploited using **Log4Shell**. We added this repository to our project to use as a testing ground for our port scanning tool and payload detection system. The repository provided a straightforward way to demonstrate **Log4Shell** exploits in a controlled environment, enabling us to confirm that our detection scripts were functioning correctly. Using this vulnerable app, we could verify the effectiveness of our monitoring system in detecting suspicious **JNDI lookups** and simulate various attack payloads. This ensured the integrity and accuracy of our exploit detection methodology.
+3. **kozmer/log4j-shell-poc**  
+   GitHub Repository: [https://github.com/kozmer/log4j-shell-poc](https://github.com/kozmer/log4j-shell-poc)  
+   **Explanation:**  
+   This proof-of-concept repository demonstrates how to exploit **Log4Shell** in a practical, real-world attack scenario, using a payload that opens the calculator application on the victim’s machine. This repository was critical for our project because it provided a fully functional exploit demonstration, helping us test the severity of the vulnerability. By leveraging this resource, we could observe firsthand how the exploit is executed, reinforcing our understanding of the potential damage **Log4Shell** can cause. Additionally, **kozmer/log4j-shell-poc** helped us craft our own proof-of-concept for the seminar, ensuring our audience grasped the seriousness of the vulnerability through a tangible example.
+
+### Port Scanning
 For monitoring JNDI lookups through  Port Scan in our Log4Shell project, we used the [Scapy library](https://github.com/secdev/scapy), a powerful Python tool for network packet manipulation and analysis. Scapy allowed us to create a Python script that listens for suspicious network traffic patterns indicative of JNDI lookups, which are central to the Log4Shell vulnerability. By capturing and analyzing network packets, Scapy helped detect potentially malicious requests that exploit the vulnerability, allowing for real-time monitoring and threat detection
+
 ## Documentation of Project
 The project, titled **DD2391-project Group 1 - Log4Shell**, focuses on the Log4Shell vulnerability (CVE-2021-44228) within the Apache Log4j library, which allows for remote code execution (RCE) through JNDI lookups. The repository contains the following main components:
 
