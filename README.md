@@ -27,6 +27,7 @@ Our project focuses on understanding, detecting, and mitigating the Log4Shell vu
 This project aims to contribute both practical and theoretical insights into how systems can remain protected from such critical weaknesses, ensuring resilience against future exploits of similar nature.
 
 ## Referneces
+For monitoring JNDI lookups through  Port Scan in our Log4Shell project, we used the [Scapy library](https://github.com/secdev/scapy), a powerful Python tool for network packet manipulation and analysis. Scapy allowed us to create a Python script that listens for suspicious network traffic patterns indicative of JNDI lookups, which are central to the Log4Shell vulnerability. By capturing and analyzing network packets, Scapy helped detect potentially malicious requests that exploit the vulnerability, allowing for real-time monitoring and threat detection
 ## Documentation of Project 
 ## Instructions on Testing
 ### Vulnerable App
@@ -43,7 +44,7 @@ By default it only listens for connections coming from the host itself. To
 listen for connections coming from other hosts (which is pretty dangerous),
 append `-Dexec.args="listen-any"` to the command mentioned above.
 
-## Exploit Host
+### Exploit Host
 
 Located in `exploit-host/`. Install Apache maven (tested on version 3.9.6),
 navigate to the app's directory and run the command
@@ -53,3 +54,8 @@ It by default listens on port 1389 and 3000, but can be changed with
 `$LDAP_PORT` and `$HTTP_PORT` respectively. If the client cannot reach the
 exploit host through `localhost`, `$HOST` must also be set to the ip or
 hostname on which it can.
+## Contributions
+### Max Andersson
+### Emil Wallgren
+### Mathias Magnusson 
+### Felix Krings
