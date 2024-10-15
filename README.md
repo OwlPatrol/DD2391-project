@@ -59,3 +59,8 @@ hostname on which it can.
 ### Emil Wallgren
 ### Mathias Magnusson 
 ### Felix Krings
+- Created the seminar presentation slides, organizing key information to clearly present our findings and methodologies.
+- Conducted in-depth background research on the Log4Shell vulnerability, gathering relevant information to support our project and understanding of the exploit.
+- Wrote the project report, with a particular focus on crafting a well-defined problem statement that highlights the significance of Log4Shell and its real-world implications.
+- Explored port scanning techniques to detect Log4Shell exploits, investigating how this method could help identify vulnerable systems exposed to potential attacks.
+- Prepared the discussion points for our seminar, ensuring all critical aspects of the project were covered and facilitating an informed conversation during the presentation.
