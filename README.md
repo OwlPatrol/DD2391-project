@@ -28,7 +28,14 @@ This project aims to contribute both practical and theoretical insights into how
 
 ## Referneces
 For monitoring JNDI lookups through  Port Scan in our Log4Shell project, we used the [Scapy library](https://github.com/secdev/scapy), a powerful Python tool for network packet manipulation and analysis. Scapy allowed us to create a Python script that listens for suspicious network traffic patterns indicative of JNDI lookups, which are central to the Log4Shell vulnerability. By capturing and analyzing network packets, Scapy helped detect potentially malicious requests that exploit the vulnerability, allowing for real-time monitoring and threat detection
-## Documentation of Project 
+## Documentation of Project
+The project, titled **DD2391-project Group 1 - Log4Shell**, focuses on the Log4Shell vulnerability (CVE-2021-44228) within the Apache Log4j library, which allows for remote code execution (RCE) through JNDI lookups. The repository contains the following main components:
+
+- **Vulnerable Application**: A custom-built Java web server that logs user information such as IP addresses and user agents. This simulates the real-world scenario where Log4Shell can be exploited through user input logged by Log4j.
+- **Exploit Host**: A Java program that acts as a server for hosting malicious payloads. This component demonstrates how an attacker could host a payload to be fetched and executed by the vulnerable application, thus exploiting Log4Shell.
+- **Port Scanning Module**: A tool designed to scan systems and detect whether they are vulnerable to Log4Shell by identifying exposed ports that could be leveraged in an attack.
+
+The project reimplements the Log4Shell vulnerability, explores its exploitation through a custom Java application, and provides tools and techniques for detecting and mitigating such attacks. The goal is to provide a comprehensive understanding of the Log4Shell exploit, its detection methods, and viable mitigations to protect systems from potential attacks.
 ## Instructions on Testing
 ### Vulnerable App
 
