@@ -11,7 +11,7 @@ Many high-profile companies and critical infrastructures that rely on Log4j were
 **Severity of the Problem:**
 Log4Shell is considered one of the most severe vulnerabilities in recent history due to several factors:
 
-1. **Ease of Exploitation**: The vulnerability requires minimal technical expertise to exploit. In most cases, a simple string injected into a log is enough to trigger the vulnerability, giving attackers access to sensitive systems without any user interaction.
+1. **Ease of Exploitation**: The vulnerability requires minimal technical expertise to exploit. In most cases, a simple string injected into a log and serving a Java class on a public facing port is enough to trigger the vulnerability, giving attackers access to sensitive systems, even without any user interaction.
 2. **Widespread Usage of Log4j**: Log4j is embedded in countless applications and services across the globe. It is used by enterprises, cloud platforms, and third-party services, making the vulnerability’s reach vast and affecting millions of systems. Many organizations were unaware that they even had Log4j integrated, leading to challenges in identifying and patching affected systems.
 3. **Potential for Remote Code Execution**: Once exploited, attackers can achieve RCE, allowing them to execute arbitrary code on the target machine. This means attackers can take full control of a vulnerable system, steal data, deploy ransomware, or even create backdoors for persistent access.
 4. **Global Impact**: Log4Shell created a global race among security professionals to patch systems, while malicious actors hurried to exploit the vulnerability. Major government agencies, cybersecurity firms, and enterprises worldwide raised alarms, leading to an unprecedented effort to protect vulnerable systems.
@@ -28,17 +28,17 @@ This project aims to contribute both practical and theoretical insights into how
 
 ## Referneces
 ### General Set Up
-1. **mbechler/marshalsec**  
-   GitHub Repository: [https://github.com/mbechler/marshalsec](https://github.com/mbechler/marshalsec)  
-   **Explanation:**  
+1. **mbechler/marshalsec**
+   GitHub Repository: [https://github.com/mbechler/marshalsec](https://github.com/mbechler/marshalsec)
+   **Explanation:**
    This repository provides a proof-of-concept tool for various Java deserialization vulnerabilities, including JNDI exploitation, which is a core component of the **Log4Shell** vulnerability. We included this resource because it offers a clear demonstration of how JNDI lookups can be leveraged in attacks, which allowed us to better understand the exploitation process. Furthermore, **marshalsec** was pivotal in setting up our own LDAP server for hosting malicious payloads, an essential step in reproducing the **Log4Shell** attack scenario. By using **marshalsec**, we were able to simulate how attackers exploit the vulnerability in real-world environments, which significantly enhanced our ability to demonstrate the vulnerability's impact during our seminar presentation.
-2. **christophetd/log4shell-vulnerable-app**  
-   GitHub Repository: [https://github.com/christophetd/log4shell-vulnerable-app](https://github.com/christophetd/log4shell-vulnerable-app)  
-   **Explanation:**  
+2. **christophetd/log4shell-vulnerable-app**
+   GitHub Repository: [https://github.com/christophetd/log4shell-vulnerable-app](https://github.com/christophetd/log4shell-vulnerable-app)
+   **Explanation:**
    This repository contains a deliberately vulnerable application designed to be exploited using **Log4Shell**. We added this repository to our project to use as a testing ground for our traffic sniffing tool and payload detection system. The repository provided a straightforward way to demonstrate **Log4Shell** exploits in a controlled environment, enabling us to confirm that our detection scripts were functioning correctly. Using this vulnerable app, we could verify the effectiveness of our monitoring system in detecting suspicious **JNDI lookups** and simulate various attack payloads. This ensured the integrity and accuracy of our exploit detection methodology.
-3. **kozmer/log4j-shell-poc**  
-   GitHub Repository: [https://github.com/kozmer/log4j-shell-poc](https://github.com/kozmer/log4j-shell-poc)  
-   **Explanation:**  
+3. **kozmer/log4j-shell-poc**
+   GitHub Repository: [https://github.com/kozmer/log4j-shell-poc](https://github.com/kozmer/log4j-shell-poc)
+   **Explanation:**
    This proof-of-concept repository demonstrates how to exploit **Log4Shell** in a practical, real-world attack scenario, using a payload that opens the calculator application on the victim’s machine. This repository was critical for our project because it provided a fully functional exploit demonstration, helping us test the severity of the vulnerability. By leveraging this resource, we could observe firsthand how the exploit is executed, reinforcing our understanding of the potential damage **Log4Shell** can cause. Additionally, **kozmer/log4j-shell-poc** helped us craft our own proof-of-concept for the seminar, ensuring our audience grasped the seriousness of the vulnerability through a tangible example.
 
 ### Traffic Sniffing
@@ -52,7 +52,9 @@ The project, titled **DD2391-project Group 1 - Log4Shell**, focuses on the Log4S
 - **Traffic sniffing Module**: A tool designed to scan network traffic for potential Log4Shell attacks. It looks through network packets for signs of malicious payloads exploiting the Log4j vulnerability, which could be used to alert a SOC team that a system is being exploited.
 
 The project reimplements the Log4Shell vulnerability, explores its exploitation through a custom Java application, and provides tools and techniques for detecting and mitigating such attacks. The goal is to provide a comprehensive understanding of the Log4Shell exploit, its detection methods, and viable mitigations to protect systems from potential attacks.
+
 ## Instructions on Testing
+
 ### Vulnerable App
 
 Located in `vulnerable-app/`. Install Apache maven (tested on version 3.9.6),
@@ -83,7 +85,7 @@ hostname on which it can.
 As a key component of my contribution to the Log4Shell vulnerability lab, I conducted extensive background research on the exploit. This in-depth investigation encompassed:
 
 - Analyzing the technical details of the CVE-2021-44228 vulnerability
-- Studying the impact of Log4Shell on various systems 
+- Studying the impact of Log4Shell on various systems
 - Finding a suitable setup that in a good manner would display how the exploit is conducted, in the end we landed on a HTTP server but other forms was also discussed such as a Minecraft server
 
 This research provided a solid foundation for our project, enhancing our team's understanding of the exploit's mechanisms and potential consequences.
@@ -112,7 +114,7 @@ Throughout the project, I maintained detailed documentation of my research findi
 #### Conclusion
 My contributions to the Log4Shell lab project encompassed thorough background research, identification and implementation of mitigation strategies, and active participation in the lab setup. This multifaceted approach allowed me to gain a comprehensive understanding of the vulnerability and practical experience in addressing critical security flaws.
 ### Emil Wallgren
-### Mathias Magnusson 
+### Mathias Magnusson
 ### Felix Krings
 During the course of this project, I invested significant time conducting in-depth research to ensure a comprehensive understanding of the **Log4Shell vulnerability**. My work included not only reviewing the core concepts of the exploit but also thoroughly analyzing multiple GitHub repositories, each offering various implementations and mitigation strategies for **Log4Shell**. This research allowed me to compare different approaches, gain insight into both existing vulnerabilities and the most effective defense mechanisms, and identify best practices for protecting against similar exploits. I meticulously reviewed code samples and contributed to the understanding of how **JNDI lookups** were leveraged in attacks, which became pivotal in crafting our own solution.
 
