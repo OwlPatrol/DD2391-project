@@ -79,6 +79,37 @@ exploit host through `localhost`, `$HOST` must also be set to the ip or
 hostname on which it can.
 ## Contributions
 ### Max Andersson
+As a key component of my contribution to the Log4Shell vulnerability lab, I conducted extensive background research on the exploit. This in-depth investigation encompassed:
+
+- Analyzing the technical details of the CVE-2021-44228 vulnerability
+- Studying the impact of Log4Shell on various systems 
+- Finding a suitable setup that in a good manner would display how the exploit is conducted, in the end we landed on a HTTP server but other forms was also discussed such as a Minecraft server
+
+This research provided a solid foundation for our project, enhancing our team's understanding of the exploit's mechanisms and potential consequences.
+
+#### Mitigation Strategies Research
+Building upon the background research, I focused on identifying and evaluating various mitigation strategies for the Log4Shell vulnerability. This phase of my work involved:
+
+- Compiling a comprehensive list of recommended mitigation techniques from reputable sources
+- Assessing the effectiveness and practicality of each mitigation method
+- Considering the potential trade-offs and implementation challenges of different approaches
+- Prioritizing mitigation strategies based on their applicability to our lab environment
+
+#### Implementation of Mitigation Techniques
+
+##### 1. Custom Input Sanitization
+One of the mitigation strategies I implemented was a custom input sanitization method. This approach aimed to remove potentially malicious JNDI lookup strings from user input. The method was designed to strip out content that could trigger the Log4Shell vulnerability, specifically targeting strings enclosed in `${}` brackets.
+
+##### 2. Disabling JNDI Lookup
+The second mitigation technique I implemented involved disabling JNDI lookups in the Log4j configuration. This strategy focused on modifying the Log4j settings to prevent the processing of JNDI lookup requests, effectively neutralizing the core mechanism exploited in Log4Shell attacks.
+
+It should be noted that these also come with there own sets of drawbacks and could be exploited. The best way to mitigate the Log4shell vunerability is to update the version to 2.15.0 and up. But for the sake of the lab we wanted to explore other mitigation strategies.
+
+#### Documentation and Reporting
+Throughout the project, I maintained detailed documentation of my research findings, implementation processes, and observed results. This documentation contributed to our team's overall report on the Log4Shell lab, providing valuable insights into the vulnerability and the effectiveness of our chosen mitigation strategies.
+
+#### Conclusion
+My contributions to the Log4Shell lab project encompassed thorough background research, identification and implementation of mitigation strategies, and active participation in the lab setup. This multifaceted approach allowed me to gain a comprehensive understanding of the vulnerability and practical experience in addressing critical security flaws.
 ### Emil Wallgren
 ### Mathias Magnusson 
 ### Felix Krings
