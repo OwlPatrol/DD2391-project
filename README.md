@@ -1,14 +1,14 @@
 # DD2391-project Group 1 - Log4Shell
 ## Motivation & Problem Statement
-**Overview of Log4Shell**
+**Overview of Log4Shell:**
 Log4Shell, discovered in December 2021, is a critical vulnerability in the Apache Log4j library, a widely-used Java-based logging framework. The vulnerability is officially tracked as CVE-2021-44228 and allows for remote code execution (RCE) by exploiting how Log4j handles user-controlled input in log messages. This issue stems from Log4j’s support for Java Naming and Directory Interface (JNDI) lookups in log entries, which could be abused by an attacker to trick Log4j into fetching and executing arbitrary code from remote servers. Given the ubiquity of Log4j in enterprise software, cloud services, and widely-used platforms, the scope of this vulnerability’s impact is immense.
 
-**History and Emergence**
+**History and Emergence:**
 Log4Shell was first disclosed publicly in December 2021, but the issue had likely existed unnoticed for years in Log4j version 2.x, which was introduced in 2013. The vulnerability was uncovered during the usage of Minecraft servers, where attackers quickly demonstrated how easily they could exploit it to gain control over a system by sending a simple chat message containing a malicious string. The fact that such a trivial input could lead to remote code execution across a wide variety of platforms triggered immediate concern, leading to widespread panic among system administrators, cybersecurity experts, and software vendors.
 
 Many high-profile companies and critical infrastructures that rely on Log4j were affected, including Amazon Web Services, Cloudflare, Twitter, and many others, highlighting the pervasive nature of the vulnerability. The vulnerability was particularly dangerous due to how easily attackers could exploit it: simply by sending a crafted string in various inputs such as HTTP requests, chat messages, or any other logged data, they could compromise servers without the need for authentication.
 
-**Severity of the Problem**
+**Severity of the Problem:**
 Log4Shell is considered one of the most severe vulnerabilities in recent history due to several factors:
 
 1. **Ease of Exploitation**: The vulnerability requires minimal technical expertise to exploit. In most cases, a simple string injected into a log is enough to trigger the vulnerability, giving attackers access to sensitive systems without any user interaction.
