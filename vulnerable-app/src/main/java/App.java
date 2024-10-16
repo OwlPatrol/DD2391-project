@@ -61,5 +61,17 @@ public class App implements HttpHandler {
             return input.replaceAll("\\$\\{.*?\\}", "");
         }
 
-
+    /*
+    public static String sanitizeInput(String input) {
+        if (input == null) {
+            return null;
+        }
+        if (input.matches(".*?\\$\\{.*?\\}.*?")) {
+            return sanitizeInput(input.replaceAll("\\$\\{.*?\\}", ""));
+        }
+        // Remove all occurrences of '${...}'
+        return input;
+    }
+    */
+    
 }
